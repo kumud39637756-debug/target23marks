@@ -1,14 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Target23marks</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+
+        header {
+            background: #1e3c72;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: #1e3c72;
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #1e3c72;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+
+        a.button:hover {
+            background: #16325c;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
 </head>
+
 <body>
 
-<h1>Target23marks</h1>
-<p>Free study materials for students</p>
+<header>
+    <h1>🎓 Target23marks</h1>
+    <p>Free & Quality Study Materials for Students</p>
+</header>
 
-<a href="sample.pdf">Download Notes</a>
+<div class="container">
+
+    <div class="card">
+        <h2>📘 Yarn Technology</h2>
+        <p>Important notes and exam-focused materials.</p>
+        <a class="button" href="yarn-notes.pdf">Download PDF</a>
+    </div>
+
+    <div class="card">
+        <h2>🧪 Polymer Science</h2>
+        <p>Simple explanations and previous year questions.</p>
+        <a class="button" href="polymer.pdf">Download PDF</a>
+    </div>
+
+    <div class="card">
+        <h2>🖼 Diagrams & Images</h2>
+        <img src="diagram.jpg" width="100%">
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Target23marks | Free Education for All
+</footer>
 
 </body>
 </html>
