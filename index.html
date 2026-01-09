@@ -30,7 +30,7 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: auto;
             padding: 20px;
         }
@@ -48,18 +48,22 @@
             color: #1e3c72;
         }
 
-        .button {
-            display: inline-block;
-            padding: 10px 18px;
-            background-color: #1e3c72;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            margin-top: 10px;
+        ul {
+            padding-left: 20px;
         }
 
-        .button:hover {
-            background-color: #16325c;
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #1e3c72;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
 
         .owner {
@@ -89,23 +93,31 @@
 
 <header>
     <h1>🎓 Target23marks</h1>
-    <p>Free & Quality Study Materials for Students</p>
+    <p>Free Study Materials for Exam Preparation</p>
 </header>
 
 <div class="container">
 
+    <!-- Yarn Technology Section -->
     <div class="card">
         <h2>📘 Yarn Technology</h2>
-        <p>Important notes, diagrams, and exam-oriented material.</p>
-        <a href="yarn-notes.pdf" class="button">Download PDF</a>
+        <p>Unit-wise notes for easy exam preparation:</p>
+
+        <ul>
+            <li>
+                <a href="yarn-technology/unit1-notes.pdf" target="_blank">
+                    Unit 1 Notes (PDF)
+                </a>
+            </li>
+            <li>
+                <a href="yarn-technology/unit2-notes.pdf" target="_blank">
+                    Unit 2 Notes (PDF)
+                </a>
+            </li>
+        </ul>
     </div>
 
-    <div class="card">
-        <h2>🧪 Polymer Science</h2>
-        <p>Simple explanations and previous year questions.</p>
-        <a href="polymer.pdf" class="button">Download PDF</a>
-    </div>
-
+    <!-- Owner Section -->
     <div class="card owner">
         <h2>👤 Website Owner</h2>
 
