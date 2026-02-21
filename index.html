@@ -1,138 +1,722 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Target23marks</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Target23Marks · by Kumud</title>
+  <meta name="description" content="Target23Marks – Helping juniors achieve their best with organised subject-wise notes, created by Kumud.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* (Keep all your existing styles here - they're perfect) */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f4f6f8;
-        }
+    :root {
+      --bg: #ffffff;
+      --surface: #f8fafc;
+      --primary: #1e3a8a;
+      --primary-light: #3b5fb0;
+      --accent: #2563eb;
+      --text: #0f172a;
+      --text-light: #334155;
+      --border: #e2e8f0;
+      --card: #ffffff;
+      --shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
+      --footer-bg: #f1f5f9;
+    }
 
-        header {
-            background: linear-gradient(90deg, #1e3c72, #2a5298);
-            color: white;
-            padding: 25px;
-            text-align: center;
-        }
+    body.dark {
+      --bg: #0b1120;
+      --surface: #1e293b;
+      --primary: #3b82f6;
+      --primary-light: #60a5fa;
+      --accent: #818cf8;
+      --text: #f1f5f9;
+      --text-light: #cbd5e1;
+      --border: #334155;
+      --card: #1e293b;
+      --shadow: 0 20px 30px -10px rgba(0,0,0,0.6);
+      --footer-bg: #111827;
+    }
 
-        header h1 {
-            margin: 0;
-            font-size: 32px;
-        }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      transition: background-color 0.2s, color 0.2s;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-        header p {
-            margin-top: 8px;
-            font-size: 16px;
-        }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
 
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 20px;
-        }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
 
-        .card {
-            background: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+    .logo-area h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+    }
 
-        .card h2 {
-            margin-top: 0;
-            color: #1e3c72;
-        }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
 
-        ul {
-            padding-left: 20px;
-        }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--text-light);
+      transition: color 0.2s;
+      cursor: pointer;
+    }
 
-        ul li {
-            margin-bottom: 10px;
-        }
+    .nav-links a:hover {
+      color: var(--primary);
+    }
 
-        a {
-            text-decoration: none;
-            color: #1e3c72;
-            font-weight: bold;
-        }
+    .dark-toggle {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      padding: 0.4rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+    }
 
-        a:hover {
-            text-decoration: underline;
-        }
+    .dark-toggle i {
+      font-size: 1rem;
+    }
 
-        .owner {
-            text-align: center;
-        }
+    /* Admin button */
+    .admin-login-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
 
-        .owner img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #1e3c72;
-            margin-bottom: 10px;
-        }
+    .admin-panel {
+      background: var(--surface);
+      border: 2px solid var(--primary);
+      border-radius: 2rem;
+      padding: 2rem;
+      margin: 2rem 0;
+      display: none;
+    }
 
-        footer {
-            background: #1e3c72;
-            color: white;
-            text-align: center;
-            padding: 12px;
-            font-size: 14px;
-        }
-    </style>
+    .admin-panel.active {
+      display: block;
+    }
+
+    .admin-panel h3 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .form-group select, .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 0.8rem 1.2rem;
+      border-radius: 60px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .form-group textarea {
+      border-radius: 20px;
+      resize: vertical;
+    }
+
+    .file-upload-area {
+      border: 2px dashed var(--primary);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .file-upload-area:hover {
+      background: var(--primary-light);
+      color: white;
+    }
+
+    .file-upload-area i {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--primary-light);
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    /* Chapter list for students */
+    .chapters-container {
+      margin: 2rem 0;
+    }
+
+    .chapter-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .chapter-info h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .chapter-info p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+
+    .chapter-meta {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .download-count {
+      background: var(--surface);
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+    }
+
+    .view-btn {
+      background: var(--accent);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 30px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+    }
+
+    .delete-btn {
+      background: #ef4444;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .password-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .password-modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--bg);
+      padding: 2rem;
+      border-radius: 2rem;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 40px;
+      border: 1px solid var(--border);
+    }
+
+    .subject-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 2rem 0 1rem;
+    }
+
+    .hero {
+      padding: 3rem 0 2rem 0;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .email-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--surface);
+      padding: 0.3rem 1.5rem;
+      border-radius: 40px;
+      border: 1px solid var(--border);
+      margin: 0 0.5rem;
+      cursor: pointer;
+    }
+
+    footer {
+      background: var(--footer-bg);
+      margin-top: 3rem;
+      padding: 2rem 0;
+    }
+  </style>
 </head>
-
 <body>
+  <div class="container">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo-area">
+        <h1>Target23Marks</h1>
+      </div>
+      <div class="nav-links">
+        <a id="home-link">Home</a>
+        <a id="explore-link">Subjects</a>
+        <button class="admin-login-btn" id="adminLoginBtn">
+          <i class="fas fa-lock"></i> Admin
+        </button>
+        <div class="dark-toggle" id="darkModeToggle">
+          <i class="fas fa-moon"></i> <span>Dark</span>
+        </div>
+      </div>
+    </nav>
 
-<header>
-    <h1>🎓 Target23marks</h1>
-    <p>Free Study Materials for Exam Preparation</p>
-</header>
-
-<div class="container">
-
-    <!-- Yarn Technology Section -->
-    <div class="card">
-        <h2>📘 Yarn Technology</h2>
-        <p>Unit-wise notes for easy exam preparation:</p>
-
-        <ul>
-            <li>
-                <a href="yarn-technology/unit1-notes.pdf" target="_blank">
-                    Unit 1 Notes (PDF)
-                </a>
-            </li>
-            <li>
-                <a href="yarn-technology/unit2-notes.pdf" target="_blank">
-                    Unit 2 Notes (PDF)
-                </a>
-            </li>
-        </ul>
+    <!-- Password Modal -->
+    <div class="password-modal" id="passwordModal">
+      <div class="modal-content">
+        <h3><i class="fas fa-shield-alt"></i> Admin Access</h3>
+        <p>Enter password to upload notes:</p>
+        <input type="password" id="adminPassword" placeholder="Enter password">
+        <div style="display: flex; gap: 1rem;">
+          <button class="btn" id="submitPassword">Login</button>
+          <button class="btn btn-secondary" id="closeModal">Cancel</button>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">Default password: admin123</p>
+      </div>
     </div>
 
-    <!-- Owner Section -->
-    <div class="card owner">
-        <h2>👤 Website Owner</h2>
+    <!-- Main Content -->
+    <main id="mainContent">
+      <!-- Homepage View -->
+      <div id="homeView">
+        <section class="hero">
+          <h2>Target23Marks</h2>
+          <div class="tagline">Helping Juniors Achieve Their Best</div>
+          <p class="intro">📘 Subject-wise organised notes — simple, clear, effective.</p>
+          <div class="creator-badge">
+            <span>✨ Created by Kumud</span>
+            <div class="contact-info"><i class="fas fa-phone-alt"></i> 9798051415</div>
+            <div class="email-chip" onclick="window.location.href='mailto:kumud39637756@gmail.com'">
+              <i class="fas fa-envelope"></i> kumud39637756@gmail.com
+            </div>
+          </div>
+          <button class="btn-primary" id="exploreNotesBtn">Explore Notes <i class="fas fa-arrow-right"></i></button>
+        </section>
 
-        <img src="owner.jpg" alt="Owner Photo">
+        <h2 class="section-title">📖 Subjects</h2>
+        <div class="subject-grid" id="subjectGrid"></div>
+      </div>
 
-        <h3>Kumud Kumar</h3>
-        <p>Founder – Target23marks</p>
-        <p>📞 Contact: <strong>+91 9798051415</strong></p>
+      <!-- Subject View (dynamic) -->
+      <div id="subjectView" style="display: none;">
+        <div class="back-link" id="backToHome">
+          <i class="fas fa-arrow-left"></i> Back to Subjects
+        </div>
+        
+        <div class="subject-header">
+          <h2 id="currentSubjectTitle"></h2>
+        </div>
+
+        <!-- Admin Panel (hidden by default) -->
+        <div class="admin-panel" id="adminPanel">
+          <h3><i class="fas fa-upload"></i> Upload New Notes</h3>
+          <form id="uploadForm">
+            <div class="form-group">
+              <label>Chapter Title</label>
+              <input type="text" id="chapterTitle" required placeholder="e.g., Python Basics">
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <textarea id="chapterDesc" rows="2" required placeholder="Brief description of the notes"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Upload PDF</label>
+              <div class="file-upload-area" id="fileUploadArea">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Click to select PDF or drag & drop</p>
+                <input type="file" id="pdfFile" accept=".pdf" style="display: none;">
+              </div>
+            </div>
+            <button type="submit" class="btn">Publish Notes <i class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
+
+        <!-- Chapters Container -->
+        <div class="chapters-container" id="chaptersContainer"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-left">
+          <i class="fas fa-graduation-cap"></i> <span>Created by Kumud</span>
+        </div>
+        <div class="footer-right">
+          <i class="fas fa-phone-alt"></i> 9798051415
+          <span style="margin-left:1rem;"><i class="fas fa-envelope"></i> kumud39637756@gmail.com</span>
+        </div>
+      </div>
+      <hr>
+      <div class="copyright">
+        © 2025 Target23Marks – helping juniors shine. For doubts: kumud39637756@gmail.com
+      </div>
     </div>
+  </footer>
 
-</div>
+  <script>
+    // Subjects data
+    const subjects = [
+      { id: 1, title: 'Python', icon: 'fa-code', desc: 'Basics, OOP, libraries' },
+      { id: 2, title: 'Polymer Science', icon: 'fa-bezier-curve', desc: 'Macromolecules, synthesis' },
+      { id: 3, title: 'Yarn Technology 2', icon: 'fa-thread', desc: 'Spinning, yarn structure' },
+      { id: 4, title: 'Fabric Technology 2', icon: 'fa-tshirt', desc: 'Weaving, knitting, finishing' }
+    ];
 
-<footer>
-    © 2026 Target23marks | Free Education for All
-</footer>
+    // Store notes in localStorage (so they persist)
+    let notesDatabase = JSON.parse(localStorage.getItem('target23marks_notes')) || {};
 
+    // Initialize empty arrays for each subject if not exists
+    subjects.forEach(sub => {
+      if (!notesDatabase[sub.id]) {
+        notesDatabase[sub.id] = [];
+      }
+    });
+
+    // State
+    let currentSubjectId = null;
+    let isAdmin = false;
+
+    // DOM Elements
+    const homeView = document.getElementById('homeView');
+    const subjectView = document.getElementById('subjectView');
+    const subjectGrid = document.getElementById('subjectGrid');
+    const chaptersContainer = document.getElementById('chaptersContainer');
+    const currentSubjectTitle = document.getElementById('currentSubjectTitle');
+    const adminPanel = document.getElementById('adminPanel');
+    const passwordModal = document.getElementById('passwordModal');
+    const adminPassword = document.getElementById('adminPassword');
+
+    // Render homepage subjects
+    function renderHomeSubjects() {
+      subjectGrid.innerHTML = '';
+      subjects.forEach(sub => {
+        const card = document.createElement('div');
+        card.className = 'subject-card';
+        card.innerHTML = `
+          <div class="subject-icon"><i class="fas ${sub.icon}"></i></div>
+          <h3>${sub.title}</h3>
+          <p>${sub.desc}</p>
+          <small style="color: var(--primary);">${notesDatabase[sub.id]?.length || 0} notes available</small>
+        `;
+        card.addEventListener('click', () => openSubject(sub.id));
+        subjectGrid.appendChild(card);
+      });
+    }
+
+    // Open subject view
+    function openSubject(subjectId) {
+      currentSubjectId = subjectId;
+      const subject = subjects.find(s => s.id === subjectId);
+      
+      homeView.style.display = 'none';
+      subjectView.style.display = 'block';
+      currentSubjectTitle.textContent = subject.title;
+      
+      // Show admin panel only if logged in
+      adminPanel.style.display = isAdmin ? 'block' : 'none';
+      
+      renderChapters();
+    }
+
+    // Render chapters for current subject
+    function renderChapters() {
+      const chapters = notesDatabase[currentSubjectId] || [];
+      
+      if (chapters.length === 0) {
+        chaptersContainer.innerHTML = `
+          <div style="text-align: center; padding: 3rem; background: var(--surface); border-radius: 2rem;">
+            <i class="fas fa-book-open" style="font-size: 3rem; color: var(--primary);"></i>
+            <p style="margin-top: 1rem;">No notes available yet. ${isAdmin ? 'Use the admin panel above to upload.' : 'Check back soon!'}</p>
+          </div>
+        `;
+        return;
+      }
+
+      chaptersContainer.innerHTML = chapters.map((chapter, index) => `
+        <div class="chapter-card" data-index="${index}">
+          <div class="chapter-info">
+            <h4>${chapter.title}</h4>
+            <p>${chapter.description}</p>
+            <small>Uploaded: ${new Date(chapter.uploadDate).toLocaleDateString()}</small>
+          </div>
+          <div class="chapter-meta">
+            <span class="download-count">
+              <i class="fas fa-download"></i> ${chapter.downloads || 0}
+            </span>
+            <button class="view-btn" onclick="viewPDF('${subjectId}', ${index})">
+              <i class="fas fa-eye"></i> View
+            </button>
+            ${isAdmin ? `
+              <button class="delete-btn" onclick="deleteChapter(${subjectId}, ${index})">
+                <i class="fas fa-trash"></i>
+              </button>
+            ` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // View PDF function
+    window.viewPDF = function(subjectId, chapterIndex) {
+      const chapter = notesDatabase[subjectId][chapterIndex];
+      if (chapter.pdfData) {
+        // Convert base64 back to blob and open
+        const byteCharacters = atob(chapter.pdfData.split(',')[1]);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+          byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+        window.open(url, '_blank');
+        
+        // Increment download count
+        chapter.downloads = (chapter.downloads || 0) + 1;
+        saveToLocalStorage();
+        renderChapters();
+      }
+    };
+
+    // Delete chapter (admin only)
+    window.deleteChapter = function(subjectId, chapterIndex) {
+      if (confirm('Delete this note? Students will no longer see it.')) {
+        notesDatabase[subjectId].splice(chapterIndex, 1);
+        saveToLocalStorage();
+        renderChapters();
+        renderHomeSubjects(); // Update count on homepage
+      }
+    };
+
+    // Save to localStorage
+    function saveToLocalStorage() {
+      localStorage.setItem('target23marks_notes', JSON.stringify(notesDatabase));
+    }
+
+    // Handle file upload
+    document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const title = document.getElementById('chapterTitle').value;
+      const description = document.getElementById('chapterDesc').value;
+      const fileInput = document.getElementById('pdfFile');
+      
+      if (!title || !description || !fileInput.files[0]) {
+        alert('Please fill all fields and select a PDF');
+        return;
+      }
+
+      const file = fileInput.files[0];
+      if (file.type !== 'application/pdf') {
+        alert('Please upload a PDF file');
+        return;
+      }
+
+      // Convert PDF to base64 for storage
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const newChapter = {
+          title: title,
+          description: description,
+          pdfData: e.target.result,
+          uploadDate: new Date().toISOString(),
+          downloads: 0
+        };
+
+        notesDatabase[currentSubjectId].push(newChapter);
+        saveToLocalStorage();
+        
+        // Clear form
+        document.getElementById('chapterTitle').value = '';
+        document.getElementById('chapterDesc').value = '';
+        document.getElementById('pdfFile').value = '';
+        
+        // Refresh view
+        renderChapters();
+        renderHomeSubjects();
+        
+        alert('✅ Notes uploaded successfully! Students can now view them.');
+      };
+      
+      reader.readAsDataURL(file);
+    });
+
+    // File upload area click
+    document.getElementById('fileUploadArea').addEventListener('click', function() {
+      document.getElementById('pdfFile').click();
+    });
+
+    // Admin login
+    document.getElementById('adminLoginBtn').addEventListener('click', function() {
+      passwordModal.classList.add('active');
+    });
+
+    document.getElementById('submitPassword').addEventListener('click', function() {
+      const password = document.getElementById('adminPassword').value;
+      // Simple password check - change this to your preferred password
+      if (password === 'admin123') {
+        isAdmin = true;
+        passwordModal.classList.remove('active');
+        adminPanel.style.display = 'block';
+        alert('✅ Admin logged in. You can now upload notes.');
+      } else {
+        alert('❌ Incorrect password');
+      }
+      document.getElementById('adminPassword').value = '';
+    });
+
+    document.getElementById('closeModal').addEventListener('click', function() {
+      passwordModal.classList.remove('active');
+    });
+
+    // Navigation
+    document.getElementById('home-link').addEventListener('click', function() {
+      homeView.style.display = 'block';
+      subjectView.style.display = 'none';
+      renderHomeSubjects();
+    });
+
+    document.getElementById('explore-link').addEventListener('click', function() {
+      homeView.style.display = 'block';
+      subjectView.style.display = 'none';
+      renderHomeSubjects();
+      document.getElementById('subjects').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    document.getElementById('exploreNotesBtn').addEventListener('click', function() {
+      document.getElementById('subjects').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    document.getElementById('backToHome').addEventListener('click', function() {
+      homeView.style.display = 'block';
+      subjectView.style.display = 'none';
+      renderHomeSubjects();
+    });
+
+    // Dark mode
+    document.getElementById('darkModeToggle').addEventListener('click', function() {
+      document.body.classList.toggle('dark');
+      this.innerHTML = document.body.classList.contains('dark') 
+        ? '<i class="fas fa-sun"></i> Light' 
+        : '<i class="fas fa-moon"></i> Dark';
+    });
+
+    // Initialize
+    renderHomeSubjects();
+  </script>
 </body>
 </html>
