@@ -2,18 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>Target23Marks | Academic Resource Hub</title>
   <meta name="description" content="Target23Marks – Curated academic notes and study materials for engineering students.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Add PDF.js for better mobile PDF viewing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
   <style>
+    /* Mobile-optimized CSS */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
     :root {
@@ -56,32 +60,41 @@
       background-color: var(--bg-secondary);
       color: var(--text-primary);
       font-family: 'Inter', sans-serif;
-      line-height: 1.6;
+      line-height: 1.5;
       transition: background-color 0.2s, color 0.2s;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      font-size: 16px; /* Prevents zoom on mobile */
     }
 
     .container {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 1rem;
     }
 
-    /* Navigation */
+    @media (min-width: 768px) {
+      .container {
+        padding: 0 2rem;
+      }
+    }
+
+    /* Mobile-optimized Navigation */
     .navbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.25rem 0;
+      padding: 1rem 0;
       border-bottom: 1px solid var(--border-light);
       background-color: var(--bg-primary);
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
 
     .logo a {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-weight: 600;
       color: var(--primary);
       text-decoration: none;
@@ -90,85 +103,80 @@
 
     .nav-items {
       display: flex;
-      gap: 2rem;
+      gap: 0.75rem;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .nav-link {
       text-decoration: none;
       color: var(--text-secondary);
       font-weight: 500;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       transition: color 0.2s;
       cursor: pointer;
+      padding: 0.25rem 0.5rem;
     }
 
-    .nav-link:hover {
-      color: var(--primary);
-    }
-
-    .admin-toggle {
+    .admin-toggle, .theme-toggle {
       background: var(--bg-secondary);
       border: 1px solid var(--border-light);
       border-radius: 40px;
-      padding: 0.4rem 1.2rem;
+      padding: 0.3rem 0.8rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.3rem;
       cursor: pointer;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       font-weight: 500;
       color: var(--text-primary);
+      white-space: nowrap;
     }
 
-    .theme-toggle {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-light);
-      border-radius: 40px;
-      padding: 0.4rem 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text-primary);
-    }
-
-    /* Hero Section */
+    /* Mobile-optimized Hero */
     .hero-section {
       background: var(--bg-primary);
-      border-radius: 24px;
-      padding: 4rem 3rem;
-      margin-bottom: 3rem;
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      margin-bottom: 2rem;
       text-align: center;
       box-shadow: var(--shadow-md);
     }
 
     .hero-title {
-      font-size: 2.8rem;
+      font-size: 2rem;
       font-weight: 700;
       color: var(--primary);
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
       letter-spacing: -0.02em;
     }
 
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 2.8rem;
+      }
+    }
+
     .hero-subtitle {
-      font-size: 1.25rem;
+      font-size: 1rem;
       color: var(--text-secondary);
-      margin-bottom: 2rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      margin-bottom: 1.5rem;
     }
 
     .creator-info {
       display: flex;
-      gap: 1.5rem;
+      gap: 1rem;
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
+      flex-direction: column;
+    }
+
+    @media (min-width: 480px) {
+      .creator-info {
+        flex-direction: row;
+      }
     }
 
     .info-item {
@@ -176,425 +184,198 @@
       align-items: center;
       gap: 0.5rem;
       color: var(--text-tertiary);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
-    .info-item i {
-      color: var(--primary);
-    }
-
-    /* Section Headers */
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 2rem 0 1.5rem;
-    }
-
-    .section-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-
-    .section-subtitle {
-      color: var(--text-tertiary);
-      font-size: 0.95rem;
-    }
-
-    /* Subject Grid */
+    /* Mobile-optimized Subject Grid */
     .subject-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 3rem;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (min-width: 640px) {
+      .subject-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .subject-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
     }
 
     .subject-card {
       background: var(--bg-primary);
       border: 1px solid var(--border-light);
-      border-radius: 20px;
-      padding: 1.75rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .subject-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--primary-light);
-    }
-
-    .subject-icon {
-      width: 48px;
-      height: 48px;
-      background: var(--bg-secondary);
       border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.25rem;
-    }
-
-    .subject-icon i {
-      font-size: 1.5rem;
-      color: var(--primary);
-    }
-
-    .subject-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: var(--text-primary);
-    }
-
-    .subject-description {
-      color: var(--text-tertiary);
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-    }
-
-    .subject-meta {
-      color: var(--primary);
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    /* Admin Panel */
-    .admin-panel {
-      background: var(--bg-primary);
-      border: 1px solid var(--border-light);
-      border-radius: 24px;
-      padding: 2rem;
-      margin: 2rem 0;
-      box-shadow: var(--shadow-md);
-    }
-
-    .panel-header {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
-    }
-
-    .panel-header i {
-      color: var(--primary);
-      font-size: 1.5rem;
-    }
-
-    .panel-header h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-    }
-
-    .form-input, .form-textarea {
-      width: 100%;
-      padding: 0.875rem 1.25rem;
-      border-radius: 16px;
-      border: 1px solid var(--border-light);
-      background: var(--bg-secondary);
-      color: var(--text-primary);
-      font-size: 0.95rem;
-      transition: all 0.2s;
-    }
-
-    .form-input:focus, .form-textarea:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(45, 106, 159, 0.1);
-    }
-
-    .form-textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
-
-    .file-upload {
-      border: 2px dashed var(--border-light);
-      border-radius: 20px;
-      padding: 2rem;
-      text-align: center;
+      padding: 1.25rem;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.2s ease;
     }
 
-    .file-upload:hover {
-      border-color: var(--primary);
+    .subject-card:active {
+      transform: scale(0.98);
       background: var(--bg-secondary);
     }
 
-    .file-upload i {
-      font-size: 2rem;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-    }
-
-    .file-upload p {
-      color: var(--text-tertiary);
-      font-size: 0.95rem;
-    }
-
-    .file-name {
-      margin-top: 0.75rem;
-      font-size: 0.9rem;
-      color: var(--primary);
-    }
-
-    .btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 0.875rem 2rem;
-      border-radius: 16px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .btn:hover {
-      background: var(--primary-light);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 1px solid var(--border-light);
-      color: var(--text-secondary);
-    }
-
-    .btn-outline:hover {
-      background: var(--bg-secondary);
-    }
-
-    /* Chapters List */
-    .chapters-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin: 2rem 0;
-    }
-
+    /* Mobile-optimized Chapters */
     .chapter-item {
       background: var(--bg-primary);
       border: 1px solid var(--border-light);
-      border-radius: 20px;
-      padding: 1.5rem;
+      border-radius: 16px;
+      padding: 1.25rem;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      gap: 1rem;
       transition: all 0.2s;
     }
 
-    .chapter-item:hover {
-      border-color: var(--primary-light);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .chapter-content h4 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-
-    .chapter-content p {
-      color: var(--text-tertiary);
-      font-size: 0.95rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .chapter-date {
-      color: var(--text-tertiary);
-      font-size: 0.85rem;
+    @media (min-width: 768px) {
+      .chapter-item {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
     }
 
     .chapter-actions {
       display: flex;
-      gap: 0.75rem;
+      gap: 0.5rem;
       align-items: center;
+      flex-wrap: wrap;
     }
 
-    .download-badge {
-      background: var(--bg-secondary);
-      padding: 0.4rem 1rem;
+    .view-button, .delete-button, .download-badge {
+      padding: 0.5rem 1rem;
       border-radius: 40px;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .view-button {
-      background: var(--accent);
-      color: white;
-      padding: 0.6rem 1.5rem;
-      border-radius: 40px;
-      border: none;
-      cursor: pointer;
-      font-weight: 500;
-      font-size: 0.9rem;
-      transition: background 0.2s;
-    }
-
-    .view-button:hover {
-      background: var(--primary-light);
-    }
-
-    .delete-button {
-      background: #ef4444;
-      color: white;
-      padding: 0.6rem 1.2rem;
-      border-radius: 40px;
-      border: none;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: background 0.2s;
-    }
-
-    .delete-button:hover {
-      background: #dc2626;
-    }
-
-    /* Empty State */
-    .empty-state {
-      background: var(--bg-primary);
-      border-radius: 24px;
-      padding: 4rem 2rem;
-      text-align: center;
-      border: 1px solid var(--border-light);
-    }
-
-    .empty-state i {
-      font-size: 3rem;
-      color: var(--primary);
-      opacity: 0.5;
-      margin-bottom: 1rem;
-    }
-
-    .empty-state p {
-      color: var(--text-tertiary);
-      font-size: 1rem;
-    }
-
-    /* Back Link */
-    .back-link {
+      font-size: 0.85rem;
+      min-height: 44px; /* Better touch target */
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      color: var(--text-secondary);
-      cursor: pointer;
-      font-size: 0.95rem;
-      margin-bottom: 1.5rem;
-      transition: color 0.2s;
+      gap: 0.3rem;
     }
 
-    .back-link:hover {
-      color: var(--primary);
-    }
-
-    /* Modal */
-    .modal {
+    /* PDF Viewer Modal */
+    .pdf-modal {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.9);
       display: none;
       justify-content: center;
       align-items: center;
-      z-index: 1000;
-      backdrop-filter: blur(4px);
+      z-index: 2000;
+      flex-direction: column;
     }
 
-    .modal.active {
+    .pdf-modal.active {
       display: flex;
     }
 
-    .modal-content {
+    .pdf-toolbar {
+      width: 100%;
       background: var(--bg-primary);
-      padding: 2rem;
-      border-radius: 24px;
-      max-width: 400px;
-      width: 90%;
-      box-shadow: var(--shadow-lg);
-    }
-
-    .modal-content h3 {
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .modal-content p {
-      color: var(--text-tertiary);
-      margin-bottom: 1.5rem;
-    }
-
-    .modal-actions {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    /* Footer */
-    footer {
-      background: var(--footer-bg);
-      margin-top: 4rem;
-      padding: 3rem 0 2rem;
-      border-top: 1px solid var(--border-light);
-    }
-
-    .footer-content {
+      padding: 0.75rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
-    .footer-info {
+    .pdf-container {
+      width: 100%;
+      height: calc(100vh - 60px);
+      overflow: auto;
+      background: #525659;
       display: flex;
-      gap: 2rem;
+      flex-direction: column;
       align-items: center;
-      flex-wrap: wrap;
+      padding: 1rem;
     }
 
-    .footer-info span {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--text-tertiary);
-      font-size: 0.95rem;
+    .pdf-page {
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      background: white;
+      max-width: 100%;
     }
 
-    .footer-info i {
-      color: var(--primary);
+    .pdf-page canvas {
+      width: 100% !important;
+      height: auto !important;
+      display: block;
     }
 
-    .footer-bottom {
+    .loading-spinner {
+      color: white;
       text-align: center;
-      color: var(--text-tertiary);
-      font-size: 0.9rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border-light);
+      padding: 2rem;
     }
 
-    /* Utilities */
-    .mt-4 { margin-top: 2rem; }
-    .text-center { text-align: center; }
+    .spinner {
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top: 3px solid white;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 1rem auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Loading States */
+    .skeleton {
+      background: linear-gradient(90deg, var(--border-light) 25%, var(--border) 50%, var(--border-light) 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+      border-radius: 8px;
+      height: 100px;
+    }
+
+    @keyframes loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* Keep all other existing styles but make sure they're mobile-friendly */
+    .admin-panel {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      box-shadow: var(--shadow-md);
+    }
+
+    .form-input, .form-textarea, .btn {
+      min-height: 48px; /* Better touch targets */
+      font-size: 16px; /* Prevents zoom on mobile */
+    }
+
+    .file-upload {
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Modal for mobile */
+    .modal-content {
+      width: 95%;
+      max-width: 400px;
+      margin: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -609,11 +390,10 @@
         <a class="nav-link" id="subjectsNav">Subjects</a>
         <div class="admin-toggle" id="adminButton">
           <i class="fas fa-lock"></i>
-          <span>Admin Access</span>
+          <span>Admin</span>
         </div>
         <div class="theme-toggle" id="themeToggle">
           <i class="fas fa-moon"></i>
-          <span>Dark</span>
         </div>
       </div>
     </nav>
@@ -621,12 +401,36 @@
     <!-- Admin Login Modal -->
     <div class="modal" id="adminModal">
       <div class="modal-content">
-        <h3>Administrator Access</h3>
-        <p>Enter your password to upload study materials</p>
-        <input type="password" class="form-input" id="adminPassword" placeholder="Enter password">
+        <h3>Admin Access</h3>
+        <p>Enter password to upload</p>
+        <input type="password" class="form-input" id="adminPassword" placeholder="Password">
         <div class="modal-actions">
           <button class="btn" id="submitPassword">Login</button>
           <button class="btn btn-outline" id="closeModal">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PDF Viewer Modal -->
+    <div class="pdf-modal" id="pdfModal">
+      <div class="pdf-toolbar">
+        <button class="btn btn-outline" id="closePdfBtn">
+          <i class="fas fa-times"></i> Close
+        </button>
+        <span id="pdfPageInfo">Page 1 / <span id="totalPages">0</span></span>
+        <div>
+          <button class="btn btn-outline" id="prevPage" disabled>
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="btn btn-outline" id="nextPage" disabled>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+      <div class="pdf-container" id="pdfContainer">
+        <div class="loading-spinner" id="pdfLoading">
+          <div class="spinner"></div>
+          <p>Loading PDF...</p>
         </div>
       </div>
     </div>
@@ -635,10 +439,9 @@
     <main id="mainContent">
       <!-- Home View -->
       <div id="homeView">
-        <!-- Hero Section -->
         <div class="hero-section">
           <h1 class="hero-title">Target23Marks</h1>
-          <p class="hero-subtitle">Curated academic notes and study materials for engineering students</p>
+          <p class="hero-subtitle">Academic notes for engineering students</p>
           
           <div class="creator-info">
             <div class="info-item">
@@ -656,10 +459,8 @@
           </div>
         </div>
 
-        <!-- Subjects Section -->
         <div class="section-header">
-          <h2 class="section-title">Academic Subjects</h2>
-          <span class="section-subtitle">Browse by discipline</span>
+          <h2 class="section-title">Subjects</h2>
         </div>
         
         <div class="subject-grid" id="subjectGrid"></div>
@@ -669,7 +470,7 @@
       <div id="subjectView" style="display: none;">
         <div class="back-link" id="backToHome">
           <i class="fas fa-arrow-left"></i>
-          <span>Back to Subjects</span>
+          <span>Back</span>
         </div>
         
         <div class="section-header">
@@ -680,31 +481,31 @@
         <div class="admin-panel" id="adminPanel">
           <div class="panel-header">
             <i class="fas fa-upload"></i>
-            <h3>Upload Study Material</h3>
+            <h3>Upload Material</h3>
           </div>
           
           <form id="uploadForm">
             <div class="form-group">
               <label class="form-label">Chapter Title</label>
-              <input type="text" class="form-input" id="chapterTitle" required placeholder="e.g., Introduction to Python">
+              <input type="text" class="form-input" id="chapterTitle" required placeholder="e.g., Introduction">
             </div>
             
             <div class="form-group">
               <label class="form-label">Description</label>
-              <textarea class="form-textarea" id="chapterDesc" required placeholder="Brief overview of the content"></textarea>
+              <textarea class="form-textarea" id="chapterDesc" required placeholder="Brief description"></textarea>
             </div>
             
             <div class="form-group">
               <label class="form-label">PDF Document</label>
               <div class="file-upload" id="fileUploadArea">
                 <i class="fas fa-cloud-upload-alt"></i>
-                <p>Click to select or drag and drop</p>
+                <p>Click to select PDF</p>
                 <input type="file" id="pdfFile" accept=".pdf" style="display: none;">
               </div>
               <div id="selectedFileName" class="file-name"></div>
             </div>
             
-            <button type="submit" class="btn">Publish Material</button>
+            <button type="submit" class="btn">Publish</button>
           </form>
         </div>
 
@@ -717,32 +518,27 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <div class="footer-content">
-        <div class="footer-info">
-          <span><i class="fas fa-graduation-cap"></i> Created by Kumud</span>
-          <span><i class="fas fa-phone"></i> 9798051415</span>
-          <span><i class="fas fa-envelope"></i> kumud39637756@gmail.com</span>
-        </div>
-      </div>
       <div class="footer-bottom">
-        © 2025 Target23Marks. All rights reserved.
+        © 2025 Target23Marks
       </div>
     </div>
   </footer>
 
   <script>
+    // Configure PDF.js
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+
     // Subjects data
     const subjects = [
-      { id: 1, title: 'Python Programming', icon: 'fa-code', desc: 'Fundamentals to advanced concepts' },
-      { id: 2, title: 'Polymer Science', icon: 'fa-bezier-curve', desc: 'Macromolecules and synthesis' },
-      { id: 3, title: 'Yarn Technology II', icon: 'fa-thread', desc: 'Spinning and yarn structure' },
-      { id: 4, title: 'Fabric Technology II', icon: 'fa-tshirt', desc: 'Weaving and finishing' }
+      { id: 1, title: 'Python Programming', icon: 'fa-code', desc: 'Fundamentals to advanced' },
+      { id: 2, title: 'Polymer Science', icon: 'fa-bezier-curve', desc: 'Macromolecules' },
+      { id: 3, title: 'Yarn Technology II', icon: 'fa-thread', desc: 'Spinning' },
+      { id: 4, title: 'Fabric Technology II', icon: 'fa-tshirt', desc: 'Weaving' }
     ];
 
-    // Store notes in localStorage
+    // Use IndexedDB for better storage (optional) or just use localStorage with compression
     let notesDatabase = JSON.parse(localStorage.getItem('target23marks_notes')) || {};
 
-    // Initialize empty arrays for each subject
     subjects.forEach(sub => {
       if (!notesDatabase[sub.id]) {
         notesDatabase[sub.id] = [];
@@ -752,6 +548,9 @@
     // State
     let currentSubjectId = null;
     let isAdmin = false;
+    let currentPdfDoc = null;
+    let currentPage = 1;
+    let totalPages = 0;
 
     // DOM Elements
     const homeView = document.getElementById('homeView');
@@ -763,27 +562,35 @@
     const adminModal = document.getElementById('adminModal');
     const adminPassword = document.getElementById('adminPassword');
     const selectedFileName = document.getElementById('selectedFileName');
+    const pdfModal = document.getElementById('pdfModal');
+    const pdfContainer = document.getElementById('pdfContainer');
+    const pdfLoading = document.getElementById('pdfLoading');
+    const prevPageBtn = document.getElementById('prevPage');
+    const nextPageBtn = document.getElementById('nextPage');
+    const pdfPageInfo = document.getElementById('pdfPageInfo');
+    const totalPagesSpan = document.getElementById('totalPages');
 
-    // Render homepage subjects
+    // Render homepage
     function renderHomeSubjects() {
       subjectGrid.innerHTML = '';
       subjects.forEach(sub => {
         const card = document.createElement('div');
         card.className = 'subject-card';
+        const materialCount = notesDatabase[sub.id]?.length || 0;
         card.innerHTML = `
           <div class="subject-icon">
             <i class="fas ${sub.icon}"></i>
           </div>
           <h3 class="subject-title">${sub.title}</h3>
           <p class="subject-description">${sub.desc}</p>
-          <div class="subject-meta">${notesDatabase[sub.id]?.length || 0} materials available</div>
+          <div class="subject-meta">${materialCount} material${materialCount !== 1 ? 's' : ''}</div>
         `;
         card.addEventListener('click', () => openSubject(sub.id));
         subjectGrid.appendChild(card);
       });
     }
 
-    // Open subject view
+    // Open subject
     function openSubject(subjectId) {
       currentSubjectId = subjectId;
       const subject = subjects.find(s => s.id === subjectId);
@@ -804,8 +611,7 @@
         chaptersContainer.innerHTML = `
           <div class="empty-state">
             <i class="fas fa-book-open"></i>
-            <p>No study materials available yet.</p>
-            ${isAdmin ? '<p style="margin-top: 0.5rem;">Use the upload panel above to add content.</p>' : ''}
+            <p>No materials available yet.</p>
           </div>
         `;
         return;
@@ -835,29 +641,121 @@
       `).join('');
     }
 
-    // View PDF
-    window.viewPDF = function(subjectId, chapterIndex) {
+    // Optimized PDF viewing with PDF.js
+    window.viewPDF = async function(subjectId, chapterIndex) {
       const chapter = notesDatabase[subjectId][chapterIndex];
-      if (chapter.pdfData) {
-        const byteCharacters = atob(chapter.pdfData.split(',')[1]);
-        const byteNumbers = new Array(byteCharacters.length);
-        for (let i = 0; i < byteCharacters.length; i++) {
-          byteNumbers[i] = byteCharacters.charCodeAt(i);
+      if (!chapter || !chapter.pdfData) return;
+
+      // Show modal and loading
+      pdfModal.classList.add('active');
+      pdfContainer.innerHTML = '';
+      pdfContainer.appendChild(pdfLoading);
+      pdfLoading.style.display = 'block';
+
+      try {
+        // Convert base64 to blob/array buffer
+        const base64Data = chapter.pdfData.split(',')[1];
+        const binaryString = atob(base64Data);
+        const bytes = new Uint8Array(binaryString.length);
+        for (let i = 0; i < binaryString.length; i++) {
+          bytes[i] = binaryString.charCodeAt(i);
         }
-        const byteArray = new Uint8Array(byteNumbers);
-        const blob = new Blob([byteArray], { type: 'application/pdf' });
-        const url = URL.createObjectURL(blob);
-        window.open(url, '_blank');
+
+        // Load PDF with PDF.js
+        const loadingTask = pdfjsLib.getDocument({ data: bytes });
+        currentPdfDoc = await loadingTask.promise;
+        totalPages = currentPdfDoc.numPages;
+        totalPagesSpan.textContent = totalPages;
+        currentPage = 1;
         
+        // Remove loading
+        pdfLoading.style.display = 'none';
+        
+        // Render first page
+        await renderPage(currentPage);
+        
+        // Update buttons
+        updatePageButtons();
+        
+        // Increment download count
         chapter.downloads = (chapter.downloads || 0) + 1;
         saveToLocalStorage();
         renderChapters();
+        
+      } catch (error) {
+        console.error('Error loading PDF:', error);
+        pdfContainer.innerHTML = '<div style="color: white; padding: 2rem; text-align: center;">Error loading PDF. Please try again.</div>';
       }
     };
 
+    // Render a specific page
+    async function renderPage(pageNum) {
+      if (!currentPdfDoc) return;
+      
+      const page = await currentPdfDoc.getPage(pageNum);
+      
+      // Calculate scale for mobile
+      const containerWidth = pdfContainer.clientWidth - 32;
+      const viewport = page.getViewport({ scale: 1 });
+      const scale = containerWidth / viewport.width;
+      const scaledViewport = page.getViewport({ scale });
+      
+      // Create canvas
+      const canvas = document.createElement('canvas');
+      canvas.className = 'pdf-page';
+      const context = canvas.getContext('2d');
+      canvas.height = scaledViewport.height;
+      canvas.width = scaledViewport.width;
+      
+      // Render page
+      const renderContext = {
+        canvasContext: context,
+        viewport: scaledViewport
+      };
+      
+      await page.render(renderContext).promise;
+      
+      // Clear and add new page
+      pdfContainer.innerHTML = '';
+      pdfContainer.appendChild(canvas);
+      
+      // Update page info
+      pdfPageInfo.textContent = `Page ${pageNum} / ${totalPages}`;
+    }
+
+    // Update navigation buttons
+    function updatePageButtons() {
+      prevPageBtn.disabled = currentPage <= 1;
+      nextPageBtn.disabled = currentPage >= totalPages;
+    }
+
+    // PDF navigation
+    prevPageBtn.addEventListener('click', async () => {
+      if (currentPage > 1) {
+        currentPage--;
+        await renderPage(currentPage);
+        updatePageButtons();
+      }
+    });
+
+    nextPageBtn.addEventListener('click', async () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        await renderPage(currentPage);
+        updatePageButtons();
+      }
+    });
+
+    // Close PDF modal
+    document.getElementById('closePdfBtn').addEventListener('click', () => {
+      pdfModal.classList.remove('active');
+      currentPdfDoc = null;
+      pdfContainer.innerHTML = '';
+    });
+
     // Delete chapter
     window.deleteChapter = function(subjectId, chapterIndex) {
-      if (confirm('Remove this material permanently?')) {
+      if (isAdmin && confirm('Remove this material?')) {
         notesDatabase[subjectId].splice(chapterIndex, 1);
         saveToLocalStorage();
         renderChapters();
@@ -874,6 +772,11 @@
     document.getElementById('uploadForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       
+      if (!isAdmin) {
+        alert('You must be admin to upload');
+        return;
+      }
+      
       const title = document.getElementById('chapterTitle').value;
       const description = document.getElementById('chapterDesc').value;
       const fileInput = document.getElementById('pdfFile');
@@ -889,6 +792,12 @@
         return;
       }
 
+      // Check file size (limit to 10MB for better performance)
+      if (file.size > 10 * 1024 * 1024) {
+        alert('File too large. Please upload PDFs smaller than 10MB for better performance.');
+        return;
+      }
+
       const reader = new FileReader();
       reader.onload = function(e) {
         const newChapter = {
@@ -896,12 +805,14 @@
           description: description,
           pdfData: e.target.result,
           uploadDate: new Date().toISOString(),
-          downloads: 0
+          downloads: 0,
+          size: file.size // Store size for info
         };
 
         notesDatabase[currentSubjectId].push(newChapter);
         saveToLocalStorage();
         
+        // Clear form
         document.getElementById('chapterTitle').value = '';
         document.getElementById('chapterDesc').value = '';
         document.getElementById('pdfFile').value = '';
@@ -918,12 +829,16 @@
 
     // File upload
     document.getElementById('fileUploadArea').addEventListener('click', function() {
-      document.getElementById('pdfFile').click();
+      if (isAdmin) {
+        document.getElementById('pdfFile').click();
+      }
     });
 
     document.getElementById('pdfFile').addEventListener('change', function(e) {
       if (this.files[0]) {
-        selectedFileName.textContent = `Selected: ${this.files[0].name}`;
+        const file = this.files[0];
+        const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
+        selectedFileName.textContent = `Selected: ${file.name} (${fileSizeMB} MB)`;
       } else {
         selectedFileName.textContent = '';
       }
@@ -939,8 +854,14 @@
       if (password === 'admin123') {
         isAdmin = true;
         adminModal.classList.remove('active');
-        adminPanel.style.display = 'block';
-        renderChapters();
+        
+        if (currentSubjectId) {
+          adminPanel.style.display = 'block';
+          renderChapters();
+        }
+        
+        document.querySelector('.admin-toggle span').textContent = 'Admin';
+        document.querySelector('.admin-toggle i').className = 'fas fa-unlock';
       } else {
         alert('Invalid password');
       }
@@ -991,8 +912,15 @@
       document.body.classList.toggle('dark');
       const isDark = document.body.classList.contains('dark');
       this.innerHTML = isDark 
-        ? '<i class="fas fa-sun"></i><span>Light</span>' 
-        : '<i class="fas fa-moon"></i><span>Dark</span>';
+        ? '<i class="fas fa-sun"></i>' 
+        : '<i class="fas fa-moon"></i>';
+    });
+
+    // Handle orientation change for PDF
+    window.addEventListener('resize', () => {
+      if (pdfModal.classList.contains('active') && currentPdfDoc) {
+        renderPage(currentPage);
+      }
     });
 
     // Initialize
