@@ -3,53 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Target23Marks · by Kumud</title>
-  <meta name="description" content="Target23Marks – Helping juniors achieve their best with organised subject-wise notes, created by Kumud.">
+  <title>Target23Marks | Academic Resource Hub</title>
+  <meta name="description" content="Target23Marks – Curated academic notes and study materials for engineering students.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* (Keep all your existing styles here - they're perfect) */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
 
     :root {
-      --bg: #ffffff;
-      --surface: #f8fafc;
-      --primary: #1e3a8a;
-      --primary-light: #3b5fb0;
-      --accent: #2563eb;
-      --text: #0f172a;
-      --text-light: #334155;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --surface: #ffffff;
+      --primary: #0a2c3d;
+      --primary-light: #1e4a6f;
+      --accent: #2d6a9f;
+      --text-primary: #1a2b3c;
+      --text-secondary: #4a5a6a;
+      --text-tertiary: #6f7d8c;
       --border: #e2e8f0;
-      --card: #ffffff;
-      --shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
-      --footer-bg: #f1f5f9;
+      --border-light: #edf2f7;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.02);
+      --shadow-md: 0 4px 20px rgba(0,0,0,0.03);
+      --shadow-lg: 0 8px 30px rgba(0,0,0,0.04);
+      --footer-bg: #f8fafc;
     }
 
     body.dark {
-      --bg: #0b1120;
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
       --surface: #1e293b;
-      --primary: #3b82f6;
-      --primary-light: #60a5fa;
-      --accent: #818cf8;
-      --text: #f1f5f9;
-      --text-light: #cbd5e1;
+      --primary: #60a5fa;
+      --primary-light: #93c5fd;
+      --accent: #3b82f6;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-tertiary: #94a3b8;
       --border: #334155;
-      --card: #1e293b;
-      --shadow: 0 20px 30px -10px rgba(0,0,0,0.6);
-      --footer-bg: #111827;
+      --border-light: #2d3a4e;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
+      --shadow-md: 0 4px 20px rgba(0,0,0,0.3);
+      --shadow-lg: 0 8px 30px rgba(0,0,0,0.4);
+      --footer-bg: #0f172a;
     }
 
     body {
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
       transition: background-color 0.2s, color 0.2s;
       min-height: 100vh;
       display: flex;
@@ -59,231 +66,446 @@
     .container {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 0 1.5rem;
+      padding: 0 2rem;
     }
 
+    /* Navigation */
     .navbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.2rem 0;
-      border-bottom: 1px solid var(--border);
-      flex-wrap: wrap;
-      gap: 1rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border-light);
+      background-color: var(--bg-primary);
+      margin-bottom: 2rem;
     }
 
-    .logo-area h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .logo a {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
       letter-spacing: -0.02em;
     }
 
-    .nav-links {
+    .nav-items {
       display: flex;
       gap: 2rem;
       align-items: center;
     }
 
-    .nav-links a {
+    .nav-link {
       text-decoration: none;
+      color: var(--text-secondary);
       font-weight: 500;
-      color: var(--text-light);
+      font-size: 0.95rem;
       transition: color 0.2s;
       cursor: pointer;
     }
 
-    .nav-links a:hover {
+    .nav-link:hover {
       color: var(--primary);
     }
 
-    .dark-toggle {
-      background: var(--surface);
-      border: 1px solid var(--border);
+    .admin-toggle {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-light);
       border-radius: 40px;
-      padding: 0.4rem 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    .dark-toggle i {
-      font-size: 1rem;
-    }
-
-    /* Admin button */
-    .admin-login-btn {
-      background: var(--accent);
-      color: white;
-      border: none;
       padding: 0.4rem 1.2rem;
-      border-radius: 40px;
-      font-weight: 500;
-      cursor: pointer;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      cursor: pointer;
       font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-primary);
     }
 
+    .theme-toggle {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: 40px;
+      padding: 0.4rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      background: var(--bg-primary);
+      border-radius: 24px;
+      padding: 4rem 3rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .creator-info {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-tertiary);
+      font-size: 0.95rem;
+    }
+
+    .info-item i {
+      color: var(--primary);
+    }
+
+    /* Section Headers */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 2rem 0 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .section-subtitle {
+      color: var(--text-tertiary);
+      font-size: 0.95rem;
+    }
+
+    /* Subject Grid */
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .subject-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 1.75rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .subject-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-light);
+    }
+
+    .subject-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--bg-secondary);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .subject-icon i {
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    .subject-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .subject-description {
+      color: var(--text-tertiary);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .subject-meta {
+      color: var(--primary);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* Admin Panel */
     .admin-panel {
-      background: var(--surface);
-      border: 2px solid var(--primary);
-      border-radius: 2rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-light);
+      border-radius: 24px;
       padding: 2rem;
       margin: 2rem 0;
-      display: none;
+      box-shadow: var(--shadow-md);
     }
 
-    .admin-panel.active {
-      display: block;
-    }
-
-    .admin-panel h3 {
-      color: var(--primary);
-      margin-bottom: 1.5rem;
+    .panel-header {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .panel-header i {
+      color: var(--primary);
+      font-size: 1.5rem;
+    }
+
+    .panel-header h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
     }
 
     .form-group {
       margin-bottom: 1.5rem;
     }
 
-    .form-group label {
+    .form-label {
       display: block;
       margin-bottom: 0.5rem;
       font-weight: 500;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
     }
 
-    .form-group select, .form-group input, .form-group textarea {
+    .form-input, .form-textarea {
       width: 100%;
-      padding: 0.8rem 1.2rem;
-      border-radius: 60px;
-      border: 1px solid var(--border);
-      background: var(--bg);
-      color: var(--text);
-      font-size: 1rem;
+      padding: 0.875rem 1.25rem;
+      border-radius: 16px;
+      border: 1px solid var(--border-light);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      transition: all 0.2s;
     }
 
-    .form-group textarea {
-      border-radius: 20px;
+    .form-input:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(45, 106, 159, 0.1);
+    }
+
+    .form-textarea {
+      min-height: 100px;
       resize: vertical;
     }
 
-    .file-upload-area {
-      border: 2px dashed var(--primary);
+    .file-upload {
+      border: 2px dashed var(--border-light);
       border-radius: 20px;
       padding: 2rem;
       text-align: center;
       cursor: pointer;
-      transition: 0.2s;
+      transition: all 0.2s;
     }
 
-    .file-upload-area:hover {
-      background: var(--primary-light);
-      color: white;
+    .file-upload:hover {
+      border-color: var(--primary);
+      background: var(--bg-secondary);
     }
 
-    .file-upload-area i {
+    .file-upload i {
       font-size: 2rem;
+      color: var(--primary);
       margin-bottom: 0.5rem;
+    }
+
+    .file-upload p {
+      color: var(--text-tertiary);
+      font-size: 0.95rem;
+    }
+
+    .file-name {
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--primary);
     }
 
     .btn {
       background: var(--primary);
       color: white;
       border: none;
-      padding: 0.8rem 2rem;
-      border-radius: 40px;
+      padding: 0.875rem 2rem;
+      border-radius: 16px;
       font-weight: 600;
+      font-size: 0.95rem;
       cursor: pointer;
-      transition: 0.2s;
+      transition: background 0.2s;
     }
 
     .btn:hover {
       background: var(--primary-light);
     }
 
-    .btn-secondary {
-      background: var(--surface);
-      color: var(--text);
-      border: 1px solid var(--border);
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border-light);
+      color: var(--text-secondary);
     }
 
-    /* Chapter list for students */
-    .chapters-container {
+    .btn-outline:hover {
+      background: var(--bg-secondary);
+    }
+
+    /* Chapters List */
+    .chapters-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
       margin: 2rem 0;
     }
 
-    .chapter-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 1.5rem;
+    .chapter-item {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
       padding: 1.5rem;
-      margin-bottom: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
+      transition: all 0.2s;
     }
 
-    .chapter-info h4 {
-      font-size: 1.3rem;
-      margin-bottom: 0.3rem;
+    .chapter-item:hover {
+      border-color: var(--primary-light);
+      box-shadow: var(--shadow-sm);
     }
 
-    .chapter-info p {
-      color: var(--text-light);
+    .chapter-content h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .chapter-content p {
+      color: var(--text-tertiary);
       font-size: 0.95rem;
+      margin-bottom: 0.5rem;
     }
 
-    .chapter-meta {
+    .chapter-date {
+      color: var(--text-tertiary);
+      font-size: 0.85rem;
+    }
+
+    .chapter-actions {
       display: flex;
-      gap: 0.5rem;
+      gap: 0.75rem;
       align-items: center;
     }
 
-    .download-count {
-      background: var(--surface);
-      padding: 0.3rem 1rem;
-      border-radius: 30px;
+    .download-badge {
+      background: var(--bg-secondary);
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
       font-size: 0.9rem;
-      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
 
-    .view-btn {
+    .view-button {
       background: var(--accent);
       color: white;
-      padding: 0.5rem 1.5rem;
-      border-radius: 30px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
+      padding: 0.6rem 1.5rem;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
       font-weight: 500;
+      font-size: 0.9rem;
+      transition: background 0.2s;
     }
 
-    .delete-btn {
+    .view-button:hover {
+      background: var(--primary-light);
+    }
+
+    .delete-button {
       background: #ef4444;
       color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 30px;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
       border: none;
       cursor: pointer;
       font-size: 0.9rem;
+      transition: background 0.2s;
     }
 
-    .password-modal {
+    .delete-button:hover {
+      background: #dc2626;
+    }
+
+    /* Empty State */
+    .empty-state {
+      background: var(--bg-primary);
+      border-radius: 24px;
+      padding: 4rem 2rem;
+      text-align: center;
+      border: 1px solid var(--border-light);
+    }
+
+    .empty-state i {
+      font-size: 3rem;
+      color: var(--primary);
+      opacity: 0.5;
+      margin-bottom: 1rem;
+    }
+
+    .empty-state p {
+      color: var(--text-tertiary);
+      font-size: 1rem;
+    }
+
+    /* Back Link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover {
+      color: var(--primary);
+    }
+
+    /* Modal */
+    .modal {
       position: fixed;
       top: 0;
       left: 0;
@@ -294,156 +516,200 @@
       justify-content: center;
       align-items: center;
       z-index: 1000;
+      backdrop-filter: blur(4px);
     }
 
-    .password-modal.active {
+    .modal.active {
       display: flex;
     }
 
     .modal-content {
-      background: var(--bg);
+      background: var(--bg-primary);
       padding: 2rem;
-      border-radius: 2rem;
+      border-radius: 24px;
       max-width: 400px;
       width: 90%;
+      box-shadow: var(--shadow-lg);
     }
 
-    .modal-content input {
-      width: 100%;
-      padding: 1rem;
-      margin: 1rem 0;
-      border-radius: 40px;
-      border: 1px solid var(--border);
+    .modal-content h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
     }
 
-    .subject-header {
+    .modal-content p {
+      color: var(--text-tertiary);
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--footer-bg);
+      margin-top: 4rem;
+      padding: 3rem 0 2rem;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .footer-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 2rem 0 1rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
     }
 
-    .hero {
-      padding: 3rem 0 2rem 0;
-      text-align: center;
+    .footer-info {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
-    .hero h2 {
-      font-size: 3.2rem;
-      font-weight: 700;
+    .footer-info span {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-tertiary);
+      font-size: 0.95rem;
+    }
+
+    .footer-info i {
       color: var(--primary);
     }
 
-    .email-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--surface);
-      padding: 0.3rem 1.5rem;
-      border-radius: 40px;
-      border: 1px solid var(--border);
-      margin: 0 0.5rem;
-      cursor: pointer;
+    .footer-bottom {
+      text-align: center;
+      color: var(--text-tertiary);
+      font-size: 0.9rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-light);
     }
 
-    footer {
-      background: var(--footer-bg);
-      margin-top: 3rem;
-      padding: 2rem 0;
-    }
+    /* Utilities */
+    .mt-4 { margin-top: 2rem; }
+    .text-center { text-align: center; }
   </style>
 </head>
 <body>
   <div class="container">
     <!-- Navigation -->
     <nav class="navbar">
-      <div class="logo-area">
-        <h1>Target23Marks</h1>
+      <div class="logo">
+        <a href="#" id="homeLink">Target23Marks</a>
       </div>
-      <div class="nav-links">
-        <a id="home-link">Home</a>
-        <a id="explore-link">Subjects</a>
-        <button class="admin-login-btn" id="adminLoginBtn">
-          <i class="fas fa-lock"></i> Admin
-        </button>
-        <div class="dark-toggle" id="darkModeToggle">
-          <i class="fas fa-moon"></i> <span>Dark</span>
+      <div class="nav-items">
+        <a class="nav-link" id="homeNav">Home</a>
+        <a class="nav-link" id="subjectsNav">Subjects</a>
+        <div class="admin-toggle" id="adminButton">
+          <i class="fas fa-lock"></i>
+          <span>Admin Access</span>
+        </div>
+        <div class="theme-toggle" id="themeToggle">
+          <i class="fas fa-moon"></i>
+          <span>Dark</span>
         </div>
       </div>
     </nav>
 
-    <!-- Password Modal -->
-    <div class="password-modal" id="passwordModal">
+    <!-- Admin Login Modal -->
+    <div class="modal" id="adminModal">
       <div class="modal-content">
-        <h3><i class="fas fa-shield-alt"></i> Admin Access</h3>
-        <p>Enter password to upload notes:</p>
-        <input type="password" id="adminPassword" placeholder="Enter password">
-        <div style="display: flex; gap: 1rem;">
+        <h3>Administrator Access</h3>
+        <p>Enter your password to upload study materials</p>
+        <input type="password" class="form-input" id="adminPassword" placeholder="Enter password">
+        <div class="modal-actions">
           <button class="btn" id="submitPassword">Login</button>
-          <button class="btn btn-secondary" id="closeModal">Cancel</button>
+          <button class="btn btn-outline" id="closeModal">Cancel</button>
         </div>
-        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">Default password: admin123</p>
       </div>
     </div>
 
     <!-- Main Content -->
     <main id="mainContent">
-      <!-- Homepage View -->
+      <!-- Home View -->
       <div id="homeView">
-        <section class="hero">
-          <h2>Target23Marks</h2>
-          <div class="tagline">Helping Juniors Achieve Their Best</div>
-          <p class="intro">📘 Subject-wise organised notes — simple, clear, effective.</p>
-          <div class="creator-badge">
-            <span>✨ Created by Kumud</span>
-            <div class="contact-info"><i class="fas fa-phone-alt"></i> 9798051415</div>
-            <div class="email-chip" onclick="window.location.href='mailto:kumud39637756@gmail.com'">
-              <i class="fas fa-envelope"></i> kumud39637756@gmail.com
+        <!-- Hero Section -->
+        <div class="hero-section">
+          <h1 class="hero-title">Target23Marks</h1>
+          <p class="hero-subtitle">Curated academic notes and study materials for engineering students</p>
+          
+          <div class="creator-info">
+            <div class="info-item">
+              <i class="fas fa-user"></i>
+              <span>Kumud</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-phone"></i>
+              <span>9798051415</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-envelope"></i>
+              <span>kumud39637756@gmail.com</span>
             </div>
           </div>
-          <button class="btn-primary" id="exploreNotesBtn">Explore Notes <i class="fas fa-arrow-right"></i></button>
-        </section>
+        </div>
 
-        <h2 class="section-title">📖 Subjects</h2>
+        <!-- Subjects Section -->
+        <div class="section-header">
+          <h2 class="section-title">Academic Subjects</h2>
+          <span class="section-subtitle">Browse by discipline</span>
+        </div>
+        
         <div class="subject-grid" id="subjectGrid"></div>
       </div>
 
-      <!-- Subject View (dynamic) -->
+      <!-- Subject View -->
       <div id="subjectView" style="display: none;">
         <div class="back-link" id="backToHome">
-          <i class="fas fa-arrow-left"></i> Back to Subjects
+          <i class="fas fa-arrow-left"></i>
+          <span>Back to Subjects</span>
         </div>
         
-        <div class="subject-header">
-          <h2 id="currentSubjectTitle"></h2>
+        <div class="section-header">
+          <h2 class="section-title" id="currentSubjectTitle"></h2>
         </div>
 
-        <!-- Admin Panel (hidden by default) -->
+        <!-- Admin Upload Panel -->
         <div class="admin-panel" id="adminPanel">
-          <h3><i class="fas fa-upload"></i> Upload New Notes</h3>
+          <div class="panel-header">
+            <i class="fas fa-upload"></i>
+            <h3>Upload Study Material</h3>
+          </div>
+          
           <form id="uploadForm">
             <div class="form-group">
-              <label>Chapter Title</label>
-              <input type="text" id="chapterTitle" required placeholder="e.g., Python Basics">
+              <label class="form-label">Chapter Title</label>
+              <input type="text" class="form-input" id="chapterTitle" required placeholder="e.g., Introduction to Python">
             </div>
+            
             <div class="form-group">
-              <label>Description</label>
-              <textarea id="chapterDesc" rows="2" required placeholder="Brief description of the notes"></textarea>
+              <label class="form-label">Description</label>
+              <textarea class="form-textarea" id="chapterDesc" required placeholder="Brief overview of the content"></textarea>
             </div>
+            
             <div class="form-group">
-              <label>Upload PDF</label>
-              <div class="file-upload-area" id="fileUploadArea">
+              <label class="form-label">PDF Document</label>
+              <div class="file-upload" id="fileUploadArea">
                 <i class="fas fa-cloud-upload-alt"></i>
-                <p>Click to select PDF or drag & drop</p>
+                <p>Click to select or drag and drop</p>
                 <input type="file" id="pdfFile" accept=".pdf" style="display: none;">
               </div>
+              <div id="selectedFileName" class="file-name"></div>
             </div>
-            <button type="submit" class="btn">Publish Notes <i class="fas fa-paper-plane"></i></button>
+            
+            <button type="submit" class="btn">Publish Material</button>
           </form>
         </div>
 
         <!-- Chapters Container -->
-        <div class="chapters-container" id="chaptersContainer"></div>
+        <div class="chapters-list" id="chaptersContainer"></div>
       </div>
     </main>
   </div>
@@ -452,17 +718,14 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <div class="footer-left">
-          <i class="fas fa-graduation-cap"></i> <span>Created by Kumud</span>
-        </div>
-        <div class="footer-right">
-          <i class="fas fa-phone-alt"></i> 9798051415
-          <span style="margin-left:1rem;"><i class="fas fa-envelope"></i> kumud39637756@gmail.com</span>
+        <div class="footer-info">
+          <span><i class="fas fa-graduation-cap"></i> Created by Kumud</span>
+          <span><i class="fas fa-phone"></i> 9798051415</span>
+          <span><i class="fas fa-envelope"></i> kumud39637756@gmail.com</span>
         </div>
       </div>
-      <hr>
-      <div class="copyright">
-        © 2025 Target23Marks – helping juniors shine. For doubts: kumud39637756@gmail.com
+      <div class="footer-bottom">
+        © 2025 Target23Marks. All rights reserved.
       </div>
     </div>
   </footer>
@@ -470,16 +733,16 @@
   <script>
     // Subjects data
     const subjects = [
-      { id: 1, title: 'Python', icon: 'fa-code', desc: 'Basics, OOP, libraries' },
-      { id: 2, title: 'Polymer Science', icon: 'fa-bezier-curve', desc: 'Macromolecules, synthesis' },
-      { id: 3, title: 'Yarn Technology 2', icon: 'fa-thread', desc: 'Spinning, yarn structure' },
-      { id: 4, title: 'Fabric Technology 2', icon: 'fa-tshirt', desc: 'Weaving, knitting, finishing' }
+      { id: 1, title: 'Python Programming', icon: 'fa-code', desc: 'Fundamentals to advanced concepts' },
+      { id: 2, title: 'Polymer Science', icon: 'fa-bezier-curve', desc: 'Macromolecules and synthesis' },
+      { id: 3, title: 'Yarn Technology II', icon: 'fa-thread', desc: 'Spinning and yarn structure' },
+      { id: 4, title: 'Fabric Technology II', icon: 'fa-tshirt', desc: 'Weaving and finishing' }
     ];
 
-    // Store notes in localStorage (so they persist)
+    // Store notes in localStorage
     let notesDatabase = JSON.parse(localStorage.getItem('target23marks_notes')) || {};
 
-    // Initialize empty arrays for each subject if not exists
+    // Initialize empty arrays for each subject
     subjects.forEach(sub => {
       if (!notesDatabase[sub.id]) {
         notesDatabase[sub.id] = [];
@@ -497,8 +760,9 @@
     const chaptersContainer = document.getElementById('chaptersContainer');
     const currentSubjectTitle = document.getElementById('currentSubjectTitle');
     const adminPanel = document.getElementById('adminPanel');
-    const passwordModal = document.getElementById('passwordModal');
+    const adminModal = document.getElementById('adminModal');
     const adminPassword = document.getElementById('adminPassword');
+    const selectedFileName = document.getElementById('selectedFileName');
 
     // Render homepage subjects
     function renderHomeSubjects() {
@@ -507,10 +771,12 @@
         const card = document.createElement('div');
         card.className = 'subject-card';
         card.innerHTML = `
-          <div class="subject-icon"><i class="fas ${sub.icon}"></i></div>
-          <h3>${sub.title}</h3>
-          <p>${sub.desc}</p>
-          <small style="color: var(--primary);">${notesDatabase[sub.id]?.length || 0} notes available</small>
+          <div class="subject-icon">
+            <i class="fas ${sub.icon}"></i>
+          </div>
+          <h3 class="subject-title">${sub.title}</h3>
+          <p class="subject-description">${sub.desc}</p>
+          <div class="subject-meta">${notesDatabase[sub.id]?.length || 0} materials available</div>
         `;
         card.addEventListener('click', () => openSubject(sub.id));
         subjectGrid.appendChild(card);
@@ -526,42 +792,41 @@
       subjectView.style.display = 'block';
       currentSubjectTitle.textContent = subject.title;
       
-      // Show admin panel only if logged in
       adminPanel.style.display = isAdmin ? 'block' : 'none';
-      
       renderChapters();
     }
 
-    // Render chapters for current subject
+    // Render chapters
     function renderChapters() {
       const chapters = notesDatabase[currentSubjectId] || [];
       
       if (chapters.length === 0) {
         chaptersContainer.innerHTML = `
-          <div style="text-align: center; padding: 3rem; background: var(--surface); border-radius: 2rem;">
-            <i class="fas fa-book-open" style="font-size: 3rem; color: var(--primary);"></i>
-            <p style="margin-top: 1rem;">No notes available yet. ${isAdmin ? 'Use the admin panel above to upload.' : 'Check back soon!'}</p>
+          <div class="empty-state">
+            <i class="fas fa-book-open"></i>
+            <p>No study materials available yet.</p>
+            ${isAdmin ? '<p style="margin-top: 0.5rem;">Use the upload panel above to add content.</p>' : ''}
           </div>
         `;
         return;
       }
 
       chaptersContainer.innerHTML = chapters.map((chapter, index) => `
-        <div class="chapter-card" data-index="${index}">
-          <div class="chapter-info">
+        <div class="chapter-item">
+          <div class="chapter-content">
             <h4>${chapter.title}</h4>
             <p>${chapter.description}</p>
-            <small>Uploaded: ${new Date(chapter.uploadDate).toLocaleDateString()}</small>
+            <span class="chapter-date">Added ${new Date(chapter.uploadDate).toLocaleDateString()}</span>
           </div>
-          <div class="chapter-meta">
-            <span class="download-count">
+          <div class="chapter-actions">
+            <span class="download-badge">
               <i class="fas fa-download"></i> ${chapter.downloads || 0}
             </span>
-            <button class="view-btn" onclick="viewPDF('${subjectId}', ${index})">
+            <button class="view-button" onclick="viewPDF(${currentSubjectId}, ${index})">
               <i class="fas fa-eye"></i> View
             </button>
             ${isAdmin ? `
-              <button class="delete-btn" onclick="deleteChapter(${subjectId}, ${index})">
+              <button class="delete-button" onclick="deleteChapter(${currentSubjectId}, ${index})">
                 <i class="fas fa-trash"></i>
               </button>
             ` : ''}
@@ -570,11 +835,10 @@
       `).join('');
     }
 
-    // View PDF function
+    // View PDF
     window.viewPDF = function(subjectId, chapterIndex) {
       const chapter = notesDatabase[subjectId][chapterIndex];
       if (chapter.pdfData) {
-        // Convert base64 back to blob and open
         const byteCharacters = atob(chapter.pdfData.split(',')[1]);
         const byteNumbers = new Array(byteCharacters.length);
         for (let i = 0; i < byteCharacters.length; i++) {
@@ -585,20 +849,19 @@
         const url = URL.createObjectURL(blob);
         window.open(url, '_blank');
         
-        // Increment download count
         chapter.downloads = (chapter.downloads || 0) + 1;
         saveToLocalStorage();
         renderChapters();
       }
     };
 
-    // Delete chapter (admin only)
+    // Delete chapter
     window.deleteChapter = function(subjectId, chapterIndex) {
-      if (confirm('Delete this note? Students will no longer see it.')) {
+      if (confirm('Remove this material permanently?')) {
         notesDatabase[subjectId].splice(chapterIndex, 1);
         saveToLocalStorage();
         renderChapters();
-        renderHomeSubjects(); // Update count on homepage
+        renderHomeSubjects();
       }
     };
 
@@ -607,7 +870,7 @@
       localStorage.setItem('target23marks_notes', JSON.stringify(notesDatabase));
     }
 
-    // Handle file upload
+    // Upload form
     document.getElementById('uploadForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       
@@ -616,7 +879,7 @@
       const fileInput = document.getElementById('pdfFile');
       
       if (!title || !description || !fileInput.files[0]) {
-        alert('Please fill all fields and select a PDF');
+        alert('Please complete all fields');
         return;
       }
 
@@ -626,7 +889,6 @@
         return;
       }
 
-      // Convert PDF to base64 for storage
       const reader = new FileReader();
       reader.onload = function(e) {
         const newChapter = {
@@ -640,65 +902,82 @@
         notesDatabase[currentSubjectId].push(newChapter);
         saveToLocalStorage();
         
-        // Clear form
         document.getElementById('chapterTitle').value = '';
         document.getElementById('chapterDesc').value = '';
         document.getElementById('pdfFile').value = '';
+        selectedFileName.textContent = '';
         
-        // Refresh view
         renderChapters();
         renderHomeSubjects();
         
-        alert('✅ Notes uploaded successfully! Students can now view them.');
+        alert('Material published successfully');
       };
       
       reader.readAsDataURL(file);
     });
 
-    // File upload area click
+    // File upload
     document.getElementById('fileUploadArea').addEventListener('click', function() {
       document.getElementById('pdfFile').click();
     });
 
+    document.getElementById('pdfFile').addEventListener('change', function(e) {
+      if (this.files[0]) {
+        selectedFileName.textContent = `Selected: ${this.files[0].name}`;
+      } else {
+        selectedFileName.textContent = '';
+      }
+    });
+
     // Admin login
-    document.getElementById('adminLoginBtn').addEventListener('click', function() {
-      passwordModal.classList.add('active');
+    document.getElementById('adminButton').addEventListener('click', function() {
+      adminModal.classList.add('active');
     });
 
     document.getElementById('submitPassword').addEventListener('click', function() {
       const password = document.getElementById('adminPassword').value;
-      // Simple password check - change this to your preferred password
       if (password === 'admin123') {
         isAdmin = true;
-        passwordModal.classList.remove('active');
+        adminModal.classList.remove('active');
         adminPanel.style.display = 'block';
-        alert('✅ Admin logged in. You can now upload notes.');
+        renderChapters();
       } else {
-        alert('❌ Incorrect password');
+        alert('Invalid password');
       }
       document.getElementById('adminPassword').value = '';
     });
 
     document.getElementById('closeModal').addEventListener('click', function() {
-      passwordModal.classList.remove('active');
+      adminModal.classList.remove('active');
+      document.getElementById('adminPassword').value = '';
+    });
+
+    // Close modal on outside click
+    window.addEventListener('click', function(e) {
+      if (e.target === adminModal) {
+        adminModal.classList.remove('active');
+        document.getElementById('adminPassword').value = '';
+      }
     });
 
     // Navigation
-    document.getElementById('home-link').addEventListener('click', function() {
+    document.getElementById('homeNav').addEventListener('click', function() {
       homeView.style.display = 'block';
       subjectView.style.display = 'none';
       renderHomeSubjects();
     });
 
-    document.getElementById('explore-link').addEventListener('click', function() {
+    document.getElementById('homeLink').addEventListener('click', function(e) {
+      e.preventDefault();
       homeView.style.display = 'block';
       subjectView.style.display = 'none';
       renderHomeSubjects();
-      document.getElementById('subjects').scrollIntoView({ behavior: 'smooth' });
     });
 
-    document.getElementById('exploreNotesBtn').addEventListener('click', function() {
-      document.getElementById('subjects').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('subjectsNav').addEventListener('click', function() {
+      homeView.style.display = 'block';
+      subjectView.style.display = 'none';
+      renderHomeSubjects();
     });
 
     document.getElementById('backToHome').addEventListener('click', function() {
@@ -707,12 +986,13 @@
       renderHomeSubjects();
     });
 
-    // Dark mode
-    document.getElementById('darkModeToggle').addEventListener('click', function() {
+    // Theme toggle
+    document.getElementById('themeToggle').addEventListener('click', function() {
       document.body.classList.toggle('dark');
-      this.innerHTML = document.body.classList.contains('dark') 
-        ? '<i class="fas fa-sun"></i> Light' 
-        : '<i class="fas fa-moon"></i> Dark';
+      const isDark = document.body.classList.contains('dark');
+      this.innerHTML = isDark 
+        ? '<i class="fas fa-sun"></i><span>Light</span>' 
+        : '<i class="fas fa-moon"></i><span>Dark</span>';
     });
 
     // Initialize
